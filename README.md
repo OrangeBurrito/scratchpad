@@ -1,0 +1,3 @@
+# Scratchpad
+
+Low-friction notepad
