@@ -1,65 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text');
+
+:root {
+  --color: #444;
+}
 
 * {
   box-sizing: border-box;
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: 'Libre Barcode 39 Text', cursive;
-    font-size: 16px;
+  margin: 0;
+  color: var(--color);
+  font-family: 'Montserrat','sans-serif'
 }
 
-label {
-    font-family: monospace;
+.site-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 1fr 60px;
+  
+  height: 100%;
 }
 
 header {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background-color: #e4e9e9;
-    height: 20vh;
-}
-
-
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 100%;
-}
-
-.sidebar {
-  height: 100%;
-  border-right: 1px solid #ddd;
+  background-color: #e4e9e9;
+  
+  font-family: 'Libre Barcode 39 Text', 'sans-serif';
+  display: grid;
+  place-content: center;
+  font-size: 2rem;
 }
 
 .content {
-    height: 100%;
-
-    padding: 1rem;
+  background-color: #eee;
 }
 
-.group {
-    padding: 0.5rem;
-    background-color: #eee;
-    margin-bottom: 0.5rem;
+.metadata {
+  background-color: #e4e9e9;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
 }
 
-.group label {
-    display: block;
+textarea {
+  padding: 1.5rem;
+  line-height: 1.5;
+  
+  font-size: 1.4rem;
+  height: 100%;
+  width: 100%;
+  
+  border: none;
+  outline: none;
+  
+  color: var(--color);
+  resize: none;
 }
 
-input {
-    font-size: inherit;
-    padding: 0.5rem 1rem;
+.meta-data-item {
+  display: flex;
+}
+
+.meta-data-item label {
+  margin-right: 1rem;
+  font-weight: bold;
 }
