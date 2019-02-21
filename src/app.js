@@ -4,24 +4,28 @@ function main() {
     const storageKey = 'markdown'
 
     const textArea = document.getElementById('markdown')
-
-    textArea.value = loadMarkdown()
-
     const wordCount = document.getElementById('word-count')
 
-    textArea.addEventListener('input', handleTextInput)
+    textArea.value = loadMarkdown()
+    updateWordCount(textArea.value)
 
+    
+    textArea.addEventListener('input', handleTextInput)
+    
     function handleTextInput(event) {
-        // update word count
-        let count = event.currentTarget.value.split(/\s+/)
-        .filter(nonEmptyString).length
-        wordCount.textContent = counthr
-        //
+        updateWordCount(event.currentTarget.value)
         saveMarkdown(event.currentTarget.value)
     }
 
     function nonEmptyString(text) {
         return text.length > 0
+    }
+
+    function updateWordCount(str) {
+        let count = str.split(/\s+/)
+        .filter(nonEmptyString).length
+
+        wordCount.textContent = count;
     }
 
     function saveMarkdown(str) {
