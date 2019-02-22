@@ -1,38 +1,51 @@
-main()
+main();
 
 function main() {
-    const storageKey = 'markdown'
+  const storageKey = "markdown";
+  const titleInput = document.getElementById("title");
+  const markdownInput = document.getElementById("markdown");
+  const wordCount = document.getElementById("word-count");
 
-    const textArea = document.getElementById('markdown')
-    const wordCount = document.getElementById('word-count')
+  const doc = loadMarkdown();
 
-    textArea.value = loadMarkdown()
-    updateWordCount(textArea.value)
+  titleInput.value = doc.title;
+  markdownInput.value = doc.markdown;
 
-    
-    textArea.addEventListener('input', handleTextInput)
-    
-    function handleTextInput(event) {
-        updateWordCount(event.currentTarget.value)
-        saveMarkdown(event.currentTarget.value)
+  updateWordCount(doc.markdown);
+
+  markdownInput.addEventListener("input", handleMarkdownInput);
+
+  function handleTitleInput(event) {
+    doc.title = event.currentTarget.value;
+    saveMarkdown(doc);
+  }
+
+  function handleMarkdownInput(event) {
+    updateWordCount(event.currentTarget.value);
+
+    doc.markdown = event.currentTarget.value;
+    saveMarkdown(doc);
+  }
+
+  function nonEmptyString(text) {
+    return text.length > 0;
+  }
+
+  function updateWordCount(str) {
+    let count = str.split(/\s+/).filter(nonEmptyString).length;
+
+    wordCount.textContent = count;
+  }
+
+  function saveMarkdown(doc) {
+    localStorage.setItem(storageKey, JSON.stringify(doc));
+  }
+
+  function loadMarkdown() {
+    const doctStr = localStorage.getItem(storageKey);
+    if (doctStr === null) {
+        return {title: 'test title', markdown: 'test markdown'}
     }
-
-    function nonEmptyString(text) {
-        return text.length > 0
-    }
-
-    function updateWordCount(str) {
-        let count = str.split(/\s+/)
-        .filter(nonEmptyString).length
-
-        wordCount.textContent = count;
-    }
-
-    function saveMarkdown(str) {
-        localStorage.setItem(storageKey, str)
-    }
-
-    function loadMarkdown() {
-        return localStorage.getItem(storageKey)
-    }
+    return JSON.parse(doctStr)
+  }
 }

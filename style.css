@@ -15,6 +15,7 @@ html, body {
 
 body {
   margin: 0;
+  font-size: 16px;
   color: var(--color);
   font-family: 'Montserrat','sans-serif'
 }
@@ -22,7 +23,7 @@ body {
 .site-wrap {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr 60px;
+  grid-template-rows: 70px 3rem 1fr 60px;
   
   height: 100%;
 }
@@ -34,6 +35,21 @@ header {
   display: grid;
   place-content: center;
   font-size: 2rem;
+}
+
+.title {
+  background-color: #45873f;
+  border-bottom: 1px solid #ddd;
+}
+
+.title input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  padding-left: 1.5rem;
+  font-weight: bold;
 }
 
 .content {
@@ -60,7 +76,6 @@ textarea {
   border: none;
   outline: none;
   
-  color: var(--color);
   resize: none;
 }
 
@@ -71,4 +86,8 @@ textarea {
 .meta-data-item label {
   margin-right: 1rem;
   font-weight: bold;
+}
+
+textarea, input {
+  color: var(--color);
 }
